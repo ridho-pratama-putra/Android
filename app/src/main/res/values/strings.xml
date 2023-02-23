@@ -9,4 +9,11 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="subscribe_to_weather">Subscribe To Weather</string>
+    <string name="log_token">Log Token</string>
+    <string name="msg_subscribed">Subscribed to weather topic</string>
+    <string name="msg_token">token done</string>
+    <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
+    <string name="msg_token_failed">Failed token</string>
 </resources>
