@@ -3,6 +3,8 @@ package com.example.android;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -25,7 +27,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
-
     public MyFirebaseMessagingService() {
         Log.d(TAG, "MyFirebaseMessagingService constructed");
     }
@@ -79,13 +80,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void showNotification(String message) {
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
-        String CHANNEL_ID_TOPIC_SAMPLE = "New Artist";
-        Notification newArtistComing = new NotificationCompat.Builder(this, CHANNEL_ID_TOPIC_SAMPLE)
+
+        // Create an explicit intent for an Activity in your app
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+
+        Notification newArtistComing = new NotificationCompat.Builder(this, getString(R.string.channel_id_topic_sample))
                 .setSmallIcon(R.drawable.ic_stat_ic_notification)
                 .setContentTitle("New Artist coming")
                 .setDefaults(Notification.DEFAULT_VIBRATE) // to trigger vibrate
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_MAX) // to show notification when app open
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
                 .build();
         managerCompat.notify(NotificationID.getID(), newArtistComing);
     }

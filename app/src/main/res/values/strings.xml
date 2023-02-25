@@ -16,4 +16,7 @@
     <string name="msg_token">token done</string>
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
     <string name="msg_token_failed">Failed token</string>
+    <string name="channel_name">channelName1</string>
+    <string name="channel_description">channelDescription1</string>
+    <string name="channel_id_topic_sample">New Artist</string>
 </resources>
